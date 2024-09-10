@@ -1,6 +1,6 @@
-const { select, input } = require('@inquirer/prompts')
+const { select, input, checkbox } = require('@inquirer/prompts')
 
-let goals = []
+let goals = [{ value: 'Learn Javascript', checked: false }]
 
 async function addGoal() {
     const goal = await input({ message: 'What is your goal?' })
@@ -14,6 +14,34 @@ async function addGoal() {
 
     console.log(`✅ Added goal: ${goal}`)
 }
+
+async function listGoals() {
+    const answers = await checkbox({
+        message: 'Select the goals you want to complete:',
+        choices: [...goals],
+        instructions: false,
+    })
+
+    if (answers.length == 0) {
+        console.log('⚠️ No goals were selected')
+        return
+    }
+
+    goals.forEach((g) => {
+        g.checked = false
+    })
+
+    answers.forEach((answer) => {
+        const goal = goals.find((g) => {
+            return g.value == answer
+        })
+
+        goal.checked = true
+    })
+
+    console.log('✅ Goal(s) marked as completed')
+}
+
 async function start() {
     console.log('🔥 App is running')
 
@@ -42,7 +70,7 @@ async function start() {
                 break
 
             case 'list':
-                console.log(goals)
+                await listGoals()
                 break
 
             case 'leave':
