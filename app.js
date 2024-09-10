@@ -1,5 +1,7 @@
 const { select, input } = require('@inquirer/prompts')
 
+let goals = []
+
 async function addGoal() {
     const goal = await input({ message: 'What is your goal?' })
 
@@ -7,6 +9,8 @@ async function addGoal() {
         console.log('⚠️ Please enter a goal')
         return
     }
+
+    goals.push({ value: goal, checked: false })
 
     console.log(`✅ Added goal: ${goal}`)
 }
@@ -38,7 +42,7 @@ async function start() {
                 break
 
             case 'list':
-                console.log('🗒️ Listing all goals')
+                console.log(goals)
                 break
 
             case 'leave':
