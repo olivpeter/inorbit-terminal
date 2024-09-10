@@ -1,11 +1,21 @@
-const { select } = require('@inquirer/prompts')
+const { select, input } = require('@inquirer/prompts')
 
-async function Start() {
+async function addGoal() {
+    const goal = await input({ message: 'What is your goal?' })
+
+    if (!goal) {
+        console.log('⚠️ Please enter a goal')
+        return
+    }
+
+    console.log(`✅ Added goal: ${goal}`)
+}
+async function start() {
     console.log('🔥 App is running')
 
     while (true) {
         const option = await select({
-            message: 'Menu >',
+            message: 'InOrbit | What do you want to do?',
             choices: [
                 {
                     name: 'Add goal',
@@ -24,7 +34,7 @@ async function Start() {
 
         switch (option) {
             case 'add':
-                console.log('☑️ Added goal')
+                await addGoal()
                 break
 
             case 'list':
@@ -38,4 +48,4 @@ async function Start() {
     }
 }
 
-Start()
+start()
