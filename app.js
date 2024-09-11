@@ -1,18 +1,19 @@
 const { select, input, checkbox } = require('@inquirer/prompts')
 
+let message = 'InOrbit Terminal | What do you want to do?'
 let goals = [{ value: 'Learn Javascript', checked: false }]
 
 async function addGoal() {
     const goal = await input({ message: 'What is your goal?' })
 
     if (!goal) {
-        console.log('⚠️ Please enter a goal')
+        message = '⚠️ Please enter a goal'
         return
     }
 
     goals.push({ value: goal, checked: false })
 
-    console.log(`✅ Added goal: ${goal}`)
+    message = `✅ Added goal: ${goal}`
 }
 
 async function listGoals() {
@@ -27,7 +28,7 @@ async function listGoals() {
     })
 
     if (answers.length == 0) {
-        console.log('⚠️ No goals were selected')
+        message = '⚠️ No goals were selected'
         return
     }
 
@@ -39,7 +40,7 @@ async function listGoals() {
         goal.checked = true
     })
 
-    console.log('✅ Goal(s) marked as completed')
+    message = '✅ Goal(s) marked as completed'
 }
 
 async function removeGoals() {
@@ -54,7 +55,7 @@ async function removeGoals() {
     })
 
     if (goalsToBeDeleted.length == 0) {
-        console.log('⚠️ No goals to be deleted')
+        message = '⚠️ No goals to be deleted'
         return
     }
 
@@ -64,7 +65,7 @@ async function removeGoals() {
         })
     })
 
-    console.log('✅ Goal(s) deleted')
+    message = '✅ Goal(s) deleted'
 }
 
 async function openGoals() {
@@ -73,7 +74,7 @@ async function openGoals() {
     })
 
     if (open.length == 0) {
-        console.log('🥳 No goals are open')
+        message = '🥳 No goals are open'
         return
     }
 
@@ -89,7 +90,7 @@ async function completedGoals() {
     })
 
     if (completed.length == 0) {
-        console.log('😒 No goals were completed')
+        message = '😒 No goals were completed'
         return
     }
 
@@ -99,12 +100,20 @@ async function completedGoals() {
     })
 }
 
-async function start() {
-    console.log('🔥 App is running')
+function showMessage() {
+    console.clear()
+    if (message != '') {
+        console.log(`${message}\n`)
+        message = ''
+    }
+}
 
+async function start() {
     while (true) {
+        showMessage()
+
         const option = await select({
-            message: 'InOrbit | What do you want to do?',
+            message: 'Menu >',
             choices: [
                 {
                     name: 'Add goal',
@@ -115,16 +124,16 @@ async function start() {
                     value: 'list',
                 },
                 {
-                    name: 'Remove goals',
-                    value: 'remove',
-                },
-                {
                     name: 'Open goals',
                     value: 'open',
                 },
                 {
                     name: 'Goals completed',
                     value: 'completed',
+                },
+                {
+                    name: 'Remove goals',
+                    value: 'remove',
                 },
                 {
                     name: 'Leave',
