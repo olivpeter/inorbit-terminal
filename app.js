@@ -42,6 +42,23 @@ async function listGoals() {
     console.log('✅ Goal(s) marked as completed')
 }
 
+async function completedGoals() {
+    const completed = goals.filter((goal) => {
+        return goal.checked
+    })
+
+    if (completed.length == 0) {
+        console.log('😒 No goals were completed')
+        return
+    }
+
+    await checkbox({
+        message: 'Completed goals:',
+        choices: [...completed],
+        instructions: false,
+    })
+}
+
 async function start() {
     console.log('🔥 App is running')
 
@@ -58,6 +75,10 @@ async function start() {
                     value: 'list',
                 },
                 {
+                    name: 'Goals completed',
+                    value: 'completed',
+                },
+                {
                     name: 'Leave',
                     value: 'leave',
                 },
@@ -71,6 +92,10 @@ async function start() {
 
             case 'list':
                 await listGoals()
+                break
+
+            case 'completed':
+                await completedGoals()
                 break
 
             case 'leave':
