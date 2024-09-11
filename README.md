@@ -20,4 +20,4 @@ InOrbit is a Goal Checker that runs in terminal made with Javascript and NodeJS.
 -   [x] Mark/Unmark goals as completed
 -   [x] Remove goals
 -   [x] Messaging system
--   [x] Saving goals in a JSON file
+-   [x] Load and Save goals in a JSON file (data persists)

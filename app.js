@@ -32,6 +32,11 @@ async function addGoal() {
 }
 
 async function listGoals() {
+    if (goals.length == 0) {
+        message = '🙃 No goals yet'
+        return
+    }
+
     const answers = await checkbox({
         message: 'Select the goals you want to complete:',
         choices: [...goals],
@@ -59,6 +64,11 @@ async function listGoals() {
 }
 
 async function removeGoals() {
+    if (goals.length == 0) {
+        message = '🙃 No goals yet'
+        return
+    }
+
     const unmarkedGoals = goals.map((goal) => {
         return { value: goal.value, checked: false }
     })
@@ -84,6 +94,11 @@ async function removeGoals() {
 }
 
 async function openGoals() {
+    if (goals.length == 0) {
+        message = '🙃 No goals yet'
+        return
+    }
+
     const open = goals.filter((goal) => {
         return !goal.checked
     })
@@ -100,6 +115,11 @@ async function openGoals() {
 }
 
 async function completedGoals() {
+    if (goals.length == 0) {
+        message = '🙃 No goals yet'
+        return
+    }
+
     const completed = goals.filter((goal) => {
         return goal.checked
     })
