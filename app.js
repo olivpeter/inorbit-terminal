@@ -1,7 +1,8 @@
 const { select, input, checkbox } = require('@inquirer/prompts')
+const fs = require('fs').promises
 
 let message = 'InOrbit Terminal | What do you want to do?'
-let goals = [{ value: 'Learn Javascript', checked: false }]
+let goals = []
 
 async function addGoal() {
     const goal = await input({ message: 'What is your goal?' })
