@@ -2,7 +2,21 @@ const { select, input, checkbox } = require('@inquirer/prompts')
 const fs = require('fs').promises
 
 let message = 'InOrbit Terminal | What do you want to do?'
-let goals = []
+let goals
+
+async function loadGoals() {
+    try {
+        const data = await fs.readFile('goals.json', 'utf8')
+
+        goals = JSON.parse(data)
+    } catch (error) {
+        goals = []
+    }
+}
+
+async function saveGoals() {
+    await fs.writeFile('goals.json', JSON.stringify(goals, null, 2))
+}
 
 async function addGoal() {
     const goal = await input({ message: 'What is your goal?' })
@@ -110,8 +124,11 @@ function showMessage() {
 }
 
 async function start() {
+    await loadGoals()
+
     while (true) {
         showMessage()
+        await saveGoals()
 
         const option = await select({
             message: 'Menu >',
