@@ -22,14 +22,14 @@ async function listGoals() {
         instructions: false,
     })
 
+    goals.forEach((g) => {
+        g.checked = false
+    })
+
     if (answers.length == 0) {
         console.log('⚠️ No goals were selected')
         return
     }
-
-    goals.forEach((g) => {
-        g.checked = false
-    })
 
     answers.forEach((answer) => {
         const goal = goals.find((g) => {
@@ -52,10 +52,9 @@ async function completedGoals() {
         return
     }
 
-    await checkbox({
+    await select({
         message: 'Completed goals:',
         choices: [...completed],
-        instructions: false,
     })
 }
 
