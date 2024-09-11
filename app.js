@@ -42,6 +42,22 @@ async function listGoals() {
     console.log('✅ Goal(s) marked as completed')
 }
 
+async function openGoals() {
+    const open = goals.filter((goal) => {
+        return !goal.checked
+    })
+
+    if (open.length == 0) {
+        console.log('🥳 No goals are open')
+        return
+    }
+
+    await select({
+        message: `Open goals: (${open.length})`,
+        choices: [...open],
+    })
+}
+
 async function completedGoals() {
     const completed = goals.filter((goal) => {
         return goal.checked
@@ -53,7 +69,7 @@ async function completedGoals() {
     }
 
     await select({
-        message: 'Completed goals:',
+        message: `Completed goals: (${completed.length})`,
         choices: [...completed],
     })
 }
@@ -74,6 +90,10 @@ async function start() {
                     value: 'list',
                 },
                 {
+                    name: 'Open goals',
+                    value: 'open',
+                },
+                {
                     name: 'Goals completed',
                     value: 'completed',
                 },
@@ -91,6 +111,10 @@ async function start() {
 
             case 'list':
                 await listGoals()
+                break
+
+            case 'open':
+                await openGoals()
                 break
 
             case 'completed':
