@@ -2,17 +2,20 @@
 
 InOrbit is a Goal Checker that runs in terminal made with Javascript and NodeJS. Study project developed during NLW Pocket in Sep 2024 by [Rocketseat](https://www.rocketseat.com.br/).
 
+![projectCover](/assets/inorbit-cover.jpg)
+
 ![Static Badge](https://img.shields.io/badge/PRs-Welcome-green?style=for-the-badge)
-![Static Badge](https://img.shields.io/badge/State-Work_in_progress-yellow?style=for-the-badge)
+![Static Badge](https://img.shields.io/badge/State-Done-green?style=for-the-badge)
 ![Static Badge](https://img.shields.io/badge/License-MIT-dark_green?style=for-the-badge&link=.%2FLICENSE)
 
-![appShowOff](/assets/app-showoff.gif)
 
 ## 🧰 Features
 
 -   Add, list, mark and remove goals
 -   Create and save goals
 -   Messaging system
+
+![appShowOff](/assets/app-showoff.gif)
 
 ## 🔨 Technologies
 
@@ -76,5 +79,3 @@ git branch -D feature/new-feature
 -   [x] Remove goals
 -   [x] Messaging system
 -   [x] Load and Save goals in a JSON file (data persists)
-
-![projectCover](/assets/inorbit-cover.jpg)
