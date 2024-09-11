@@ -1,1 +1,6 @@
-[]
+[
+  {
+    "value": "Learn Javascript",
+    "checked": true
+  }
+]
