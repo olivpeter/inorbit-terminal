@@ -42,6 +42,31 @@ async function listGoals() {
     console.log('✅ Goal(s) marked as completed')
 }
 
+async function removeGoals() {
+    const unmarkedGoals = goals.map((goal) => {
+        return { value: goal.value, checked: false }
+    })
+
+    const goalsToBeDeleted = await checkbox({
+        message: 'Select the goals you want to delete:',
+        choices: [...unmarkedGoals],
+        instructions: false,
+    })
+
+    if (goalsToBeDeleted.length == 0) {
+        console.log('⚠️ No goals to be deleted')
+        return
+    }
+
+    goalsToBeDeleted.forEach((item) => {
+        goals = goals.filter((goal) => {
+            return goal.value != item
+        })
+    })
+
+    console.log('✅ Goal(s) deleted')
+}
+
 async function openGoals() {
     const open = goals.filter((goal) => {
         return !goal.checked
@@ -90,6 +115,10 @@ async function start() {
                     value: 'list',
                 },
                 {
+                    name: 'Remove goals',
+                    value: 'remove',
+                },
+                {
                     name: 'Open goals',
                     value: 'open',
                 },
@@ -111,6 +140,10 @@ async function start() {
 
             case 'list':
                 await listGoals()
+                break
+
+            case 'remove':
+                await removeGoals()
                 break
 
             case 'open':
