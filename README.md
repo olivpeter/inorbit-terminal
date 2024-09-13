@@ -53,10 +53,10 @@ node app.js
 git pull
 ```
 
--   Create a new branch w/ this pattern: `feature/new-feature`
+-   Create a new branch w/ this pattern: `feat/new-feat`
 
 ```bash
-git checkout -b feature/new-feature
+git checkout -b feat/new-feat
 ```
 
 -   Commit your changes w/ conventional commit messages
@@ -64,7 +64,7 @@ git checkout -b feature/new-feature
 -   Wait review and merge to delete your old branch
 
 ```bash
-git branch -D feature/new-feature
+git branch -D feat/new-feat
 ```
 
 -   Good luck 🥳!
@@ -75,6 +75,7 @@ git branch -D feature/new-feature
 -   [x] List goals
     -   [x] Completed goals
     -   [x] Open goals
+-   [ ] Edit goals
 -   [x] Mark/Unmark goals as completed
 -   [x] Remove goals
 -   [x] Messaging system

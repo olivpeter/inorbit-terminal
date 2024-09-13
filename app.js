@@ -63,6 +63,8 @@ async function listGoals() {
 	message = '✅ Goal(s) marked as completed'
 }
 
+async function editGoals() {}
+
 async function removeGoals() {
 	if (goals.length === 0) {
 		message = '🙃 No goals yet'
@@ -162,6 +164,10 @@ async function start() {
 					value: 'list',
 				},
 				{
+					name: 'Edit goals',
+					value: 'edit',
+				},
+				{
 					name: 'Open goals',
 					value: 'open',
 				},
@@ -187,6 +193,10 @@ async function start() {
 
 			case 'list':
 				await listGoals()
+				break
+
+			case 'edit':
+				await editGoals()
 				break
 
 			case 'remove':
