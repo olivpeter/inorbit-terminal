@@ -43,7 +43,7 @@ async function listGoals() {
 		instructions: false,
 	})
 
-	goals.forEach(g => {
+	goals.forEach((g) => {
 		g.checked = false
 	})
 
@@ -52,8 +52,8 @@ async function listGoals() {
 		return
 	}
 
-	answers.forEach(answer => {
-		const goal = goals.find(g => {
+	answers.forEach((answer) => {
+		const goal = goals.find((g) => {
 			return g.value === answer
 		})
 
@@ -69,7 +69,7 @@ async function removeGoals() {
 		return
 	}
 
-	const unmarkedGoals = goals.map(goal => {
+	const unmarkedGoals = goals.map((goal) => {
 		return { value: goal.value, checked: false }
 	})
 
@@ -84,8 +84,8 @@ async function removeGoals() {
 		return
 	}
 
-	goalsToBeDeleted.forEach(item => {
-		goals = goals.filter(goal => {
+	goalsToBeDeleted.forEach((item) => {
+		goals = goals.filter((goal) => {
 			return goal.value !== item
 		})
 	})
@@ -99,7 +99,7 @@ async function openGoals() {
 		return
 	}
 
-	const open = goals.filter(goal => {
+	const open = goals.filter((goal) => {
 		return !goal.checked
 	})
 
@@ -120,7 +120,7 @@ async function completedGoals() {
 		return
 	}
 
-	const completed = goals.filter(goal => {
+	const completed = goals.filter((goal) => {
 		return goal.checked
 	})
 
