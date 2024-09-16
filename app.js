@@ -43,7 +43,7 @@ async function listGoals() {
 		instructions: false,
 	})
 
-	goals.forEach(g => {
+	goals.forEach((g) => {
 		g.checked = false
 	})
 
@@ -52,8 +52,8 @@ async function listGoals() {
 		return
 	}
 
-	answers.forEach(answer => {
-		const goal = goals.find(g => {
+	answers.forEach((answer) => {
+		const goal = goals.find((g) => {
 			return g.value === answer
 		})
 
@@ -63,7 +63,27 @@ async function listGoals() {
 	message = '✅ Goal(s) marked as completed'
 }
 
-async function editGoals() {}
+async function editGoals() {
+	if (goals.length === 0) {
+		message = '🫡 No goals to edit yet'
+		return
+	}
+
+	const unmarkedGoals = goals.filter((goal) => {
+		return !goal.checked
+	})
+
+	const goalsToBeEdited = await select({
+		message: 'Select the goals you want to edit:',
+		choices: [...unmarkedGoals],
+		instructions: false,
+	})
+
+	if (goalsToBeEdited.length === 0) {
+		message = '⚠️ No goals were edited'
+		return
+	}
+}
 
 async function removeGoals() {
 	if (goals.length === 0) {
@@ -71,7 +91,7 @@ async function removeGoals() {
 		return
 	}
 
-	const unmarkedGoals = goals.map(goal => {
+	const unmarkedGoals = goals.map((goal) => {
 		return { value: goal.value, checked: false }
 	})
 
@@ -86,8 +106,8 @@ async function removeGoals() {
 		return
 	}
 
-	goalsToBeDeleted.forEach(item => {
-		goals = goals.filter(goal => {
+	goalsToBeDeleted.forEach((item) => {
+		goals = goals.filter((goal) => {
 			return goal.value !== item
 		})
 	})
@@ -101,7 +121,7 @@ async function openGoals() {
 		return
 	}
 
-	const open = goals.filter(goal => {
+	const open = goals.filter((goal) => {
 		return !goal.checked
 	})
 
@@ -122,7 +142,7 @@ async function completedGoals() {
 		return
 	}
 
-	const completed = goals.filter(goal => {
+	const completed = goals.filter((goal) => {
 		return goal.checked
 	})
 

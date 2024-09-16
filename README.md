@@ -8,7 +8,6 @@ InOrbit is a Goal Checker that runs in terminal made with Javascript and NodeJS.
 ![Static Badge](https://img.shields.io/badge/State-Done-green?style=for-the-badge)
 ![Static Badge](https://img.shields.io/badge/License-MIT-dark_green?style=for-the-badge&link=.%2FLICENSE)
 
-
 ## 🧰 Features
 
 -   Add, list, mark and remove goals
